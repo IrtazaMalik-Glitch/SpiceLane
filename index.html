@@ -1,660 +1,715 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SpiceLane – Desi & Fast Food</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌶️</text></svg>"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="stylesheet" href="foodshop.css"/>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌶️</text></svg>" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="foodshop.css" />
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
+
 <body>
 
-<!-- ══ CURSOR ══ -->
-<div class="custom-cursor" id="cursor"></div>
-<div class="cursor-follower" id="cursorFollower"></div>
+  <!-- ══ CURSOR ══ -->
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
 
-<!-- ══ LOADER ══ -->
-<div class="page-loader" id="pageLoader">
-  <div class="loader-inner">
-    <div class="loader-logo">🌶️</div>
-    <div class="loader-brand">Spice<span>Lane</span></div>
-    <div class="loader-bar"><div class="loader-progress" id="loaderProgress"></div></div>
-    <div class="loader-text">Preparing your feast…</div>
-  </div>
-</div>
-
-<!-- ══ TOAST ══ -->
-<div class="toast" id="toast">
-  <i class="fas fa-check-circle"></i>
-  <span id="toastMsg">Item added!</span>
-</div>
-
-<!-- ══ WHATSAPP FLOAT ══ -->
-<a href="https://wa.me/923285580982?text=Hello%2C%20I'd%20like%20to%20place%20an%20order" target="_blank" class="whatsapp-float" title="Order on WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-  <span class="wa-tooltip">Order Now</span>
-</a>
-
-<!-- ══ SCROLL TO TOP ══ -->
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <i class="fas fa-arrow-up"></i>
-</button>
-
-<!-- ══════════ NAVBAR ══════════ -->
-<nav id="navbar">
-  <div class="nav-inner">
-    <button class="burger-btn" onclick="toggleDrawer()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="#" class="nav-logo">
-      <div class="logo-icon">🌶️</div>
-      <span>Spice<b>Lane</b></span>
-    </a>
-    <div class="search-wrap" id="searchWrap">
-      <i class="fas fa-search search-icon"></i>
-      <input type="text" id="searchInput" placeholder="Search biryani, pizza, coffee…"
-             oninput="handleSearch(this.value)"
-             onblur="hideSearchResults()"
-             onfocus="if(this.value.trim())handleSearch(this.value)"/>
-      <div class="search-results" id="searchResults"></div>
+  <!-- ══ LOADER ══ -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-inner">
+      <div class="loader-logo">🌶️</div>
+      <div class="loader-brand">Spice<span>Lane</span></div>
+      <div class="loader-bar">
+        <div class="loader-progress" id="loaderProgress"></div>
+      </div>
+      <div class="loader-text">Preparing your feast…</div>
     </div>
-    <div class="nav-actions">
-      <button class="nav-btn" onclick="smoothScroll('#menu')">
-        <i class="fas fa-utensils"></i><span>Menu</span>
+  </div>
+
+  <!-- ══ TOAST ══ -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">Item added!</span>
+  </div>
+
+  <!-- ══ WHATSAPP FLOAT ══ -->
+  <a href="https://wa.me/923285580982?text=Hello%2C%20I'd%20like%20to%20place%20an%20order" target="_blank"
+    class="whatsapp-float" title="Order on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-tooltip">Order Now</span>
+  </a>
+
+  <!-- ══ SCROLL TO TOP ══ -->
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ══════════ NAVBAR ══════════ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <button class="burger-btn" onclick="toggleDrawer()" aria-label="Menu">
+        <span></span><span></span><span></span>
       </button>
-      <button class="nav-btn" onclick="smoothScroll('#delivery')">
-        <i class="fas fa-motorcycle"></i><span>Delivery</span>
+      <a href="#" class="nav-logo">
+        <div class="logo-icon">🌶️</div>
+        <span>Spice<b>Lane</b></span>
+      </a>
+      <div class="search-wrap" id="searchWrap">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Search biryani, pizza, coffee…"
+          oninput="handleSearch(this.value)" onblur="hideSearchResults()"
+          onfocus="if(this.value.trim())handleSearch(this.value)" />
+        <div class="search-results" id="searchResults"></div>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-btn" onclick="smoothScroll('#menu')">
+          <i class="fas fa-utensils"></i><span>Menu</span>
+        </button>
+        <button class="nav-btn" onclick="smoothScroll('#delivery')">
+          <i class="fas fa-motorcycle"></i><span>Delivery</span>
+        </button>
+        <button class="nav-btn cart-trigger" onclick="toggleCart()">
+          <i class="fas fa-shopping-bag"></i><span>Cart</span>
+          <div class="cart-count" id="cartCount">0</div>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══ DRAWER ══ -->
+  <div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <div class="logo-icon small">🌶️</div>
+        <span>Spice<b>Lane</b></span>
+      </div>
+      <button class="drawer-close" onclick="closeDrawer()"><i class="fas fa-times"></i></button>
+    </div>
+    <ul class="drawer-menu">
+      <li><a href="#hero" onclick="closeDrawer()"><i class="fas fa-home"></i>Home</a></li>
+      <li><a href="#categories" onclick="closeDrawer()"><i class="fas fa-th-large"></i>Categories</a></li>
+      <li><a href="#menu" onclick="closeDrawer()"><i class="fas fa-utensils"></i>Full Menu<span
+            class="d-badge hot">HOT</span></a></li>
+      <li><a href="#coffee" onclick="closeDrawer()"><i class="fas fa-coffee"></i>Coffee Bar<span
+            class="d-badge new">NEW</span></a></li>
+      <li><a href="#drinks" onclick="closeDrawer()"><i class="fas fa-glass-whiskey"></i>Drinks & Desserts</a></li>
+      <li><a href="#offers" onclick="closeDrawer()"><i class="fas fa-tags"></i>Special Offers</a></li>
+      <li><a href="#delivery" onclick="closeDrawer()"><i class="fas fa-motorcycle"></i>Delivery</a></li>
+      <li><a href="#footer" onclick="closeDrawer()"><i class="fas fa-phone"></i>Contact Us</a></li>
+    </ul>
+    <div class="drawer-delivery">
+      <h4><i class="fas fa-truck"></i> Order Type</h4>
+      <label class="delivery-opt active" id="opt-delivery">
+        <input type="radio" name="otype" value="delivery" checked onchange="setOrderType(this)" />
+        <span class="opt-icon">🛵</span><span>Home Delivery</span>
+      </label>
+      <label class="delivery-opt" id="opt-pickup">
+        <input type="radio" name="otype" value="pickup" onchange="setOrderType(this)" />
+        <span class="opt-icon">🏪</span><span>Takeaway</span>
+      </label>
+      <label class="delivery-opt" id="opt-dine">
+        <input type="radio" name="otype" value="dine" onchange="setOrderType(this)" />
+        <span class="opt-icon">🍽️</span><span>Dine In</span>
+      </label>
+      <label class="delivery-opt" id="opt-online">
+        <input type="radio" name="otype" value="online" onchange="setOrderType(this)" />
+        <span class="opt-icon">💻</span><span>Pre-order</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ══ HERO SLIDER ══ -->
+  <section class="hero" id="hero">
+    <div class="slides" id="slides">
+      <div class="slide">
+        <div class="slide-bg"
+          style="background-image:url('https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=1600&q=80');">
+        </div>
+        <div class="slide-content fade-up visible">
+          <div class="slide-tag">🌶️ Desi Classics</div>
+          <h1>Authentic <span>Biryani</span><br />Like Ammi Made</h1>
+          <p>Hand-spiced, slow-cooked, and packed with flavour. Chicken, Beef, Mutton & Vegetable options available
+            daily.</p>
+          <div class="slide-btns">
+            <a href="#menu" class="btn btn-red"><i class="fas fa-utensils"></i> Order Now</a>
+            <a href="#menu" class="btn btn-outline">See Full Menu</a>
+          </div>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="slide-bg"
+          style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1600&q=80');">
+        </div>
+        <div class="slide-content">
+          <div class="slide-tag">🍕 Fast Food</div>
+          <h1>Wood-Fire <span>Pizza</span><br />& Gourmet Burgers</h1>
+          <p>Classic, BBQ, Spicy & Loaded — every pizza and burger crafted to perfection with premium ingredients.</p>
+          <div class="slide-btns">
+            <a href="#menu" class="btn btn-red"><i class="fas fa-utensils"></i> Order Now</a>
+            <a href="#delivery" class="btn btn-outline">Delivery Info</a>
+          </div>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="slide-bg"
+          style="background-image:url('https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1600&q=80');">
+        </div>
+        <div class="slide-content">
+          <div class="slide-tag">☕ Coffee Bar</div>
+          <h1>Premium <span>Coffee</span><br />& Hot Beverages</h1>
+          <p>From rich espresso to creamy lattes — our baristas craft every cup with passion and precision.</p>
+          <div class="slide-btns">
+            <a href="#coffee" class="btn btn-red"><i class="fas fa-coffee"></i> Coffee Menu</a>
+            <a href="#offers" class="btn btn-outline">Today's Deals</a>
+          </div>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="slide-bg"
+          style="background-image:url('https://images.unsplash.com/photo-1499744937866-d7e566a20a61?w=1600&q=80');">
+        </div>
+        <div class="slide-content">
+          <div class="slide-tag">🍦 Desserts</div>
+          <h1>Cool Down with<br /><span>Ice Cream</span> & Shakes</h1>
+          <p>30+ flavours, sundaes, waffles & thick shakes to sweeten every moment of your day.</p>
+          <div class="slide-btns">
+            <a href="#drinks" class="btn btn-red"><i class="fas fa-ice-cream"></i> Explore Desserts</a>
+            <a href="#offers" class="btn btn-outline">Today's Deals</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Progress Bar -->
+    <div class="slide-progress-bar">
+      <div class="slide-progress-fill" id="slideProgressFill"></div>
+    </div>
+    <div class="dots" id="dots">
+      <div class="dot active" onclick="goSlide(0)"></div>
+      <div class="dot" onclick="goSlide(1)"></div>
+      <div class="dot" onclick="goSlide(2)"></div>
+      <div class="dot" onclick="goSlide(3)"></div>
+    </div>
+    <div class="slide-arrows">
+      <button class="arrow-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+      <button class="arrow-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </section>
+
+  <!-- ══ STATS ══ -->
+  <div class="stats-section">
+    <div class="stats-inner">
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="12000">0</div>
+        <div class="stat-plus">+</div>
+        <div class="stat-label">Happy Customers</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="50">0</div>
+        <div class="stat-plus">+</div>
+        <div class="stat-label">Menu Items</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="49">4.0</div>
+        <div class="stat-plus"></div>
+        <div class="stat-label">Average Rating ★</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="30">0</div>
+        <div class="stat-plus">min</div>
+        <div class="stat-label">Avg. Delivery</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="7">0</div>
+        <div class="stat-plus"></div>
+        <div class="stat-label">Days a Week</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CATEGORIES ══ -->
+  <section class="categories-section" id="categories">
+    <div class="section-header reveal">
+      <div class="section-kicker">What We Serve</div>
+      <h2 class="section-title">Explore Our <em>Categories</em></h2>
+    </div>
+    <div class="cat-grid">
+      <a href="#menu" class="cat-card reveal" onclick="filterMenu('desi',null)" style="--delay:0.05s">
+        <div class="cat-img-wrap">
+          <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80" alt="Desi Food"
+            loading="lazy" />
+          <div class="cat-glow"></div>
+        </div>
+        <div class="cat-label">🍛 Desi Food</div>
+      </a>
+      <a href="#menu" class="cat-card reveal" onclick="filterMenu('pizza',null)" style="--delay:0.10s">
+        <div class="cat-img-wrap">
+          <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80" alt="Pizza"
+            loading="lazy" />
+          <div class="cat-glow"></div>
+        </div>
+        <div class="cat-label">🍕 Pizza</div>
+      </a>
+      <a href="#menu" class="cat-card reveal" onclick="filterMenu('burger',null)" style="--delay:0.15s">
+        <div class="cat-img-wrap">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80" alt="Burgers"
+            loading="lazy" />
+          <div class="cat-glow"></div>
+        </div>
+        <div class="cat-label">🍔 Burgers</div>
+      </a>
+      <a href="#menu" class="cat-card reveal" onclick="filterMenu('roll',null)" style="--delay:0.20s">
+        <div class="cat-img-wrap">
+          <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&q=80" alt="Rolls"
+            loading="lazy" />
+          <div class="cat-glow"></div>
+        </div>
+        <div class="cat-label">🌯 Rolls & Wraps</div>
+      </a>
+      <a href="#menu" class="cat-card reveal" onclick="filterMenu('bbq',null)" style="--delay:0.25s">
+        <div class="cat-img-wrap">
+          <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=400&q=80" alt="BBQ" loading="lazy" />
+          <div class="cat-glow"></div>
+        </div>
+        <div class="cat-label">🍢 BBQ & Grill</div>
+      </a>
+      <a href="#coffee" class="cat-card reveal" style="--delay:0.30s">
+        <div class="cat-img-wrap">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&q=80" alt="Coffee"
+            loading="lazy" />
+          <div class="cat-glow"></div>
+        </div>
+        <div class="cat-label">☕ Coffee</div>
+      </a>
+      <a href="#drinks" class="cat-card reveal" style="--delay:0.35s">
+        <div class="cat-img-wrap">
+          <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400&q=80" alt="Drinks"
+            loading="lazy" />
+          <div class="cat-glow"></div>
+        </div>
+        <div class="cat-label">🥤 Drinks</div>
+      </a>
+      <a href="#drinks" class="cat-card reveal" style="--delay:0.40s">
+        <div class="cat-img-wrap">
+          <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=400&q=80" alt="Ice Cream"
+            loading="lazy" />
+          <div class="cat-glow"></div>
+        </div>
+        <div class="cat-label">🍦 Ice Cream</div>
+      </a>
+      <a href="#menu" class="cat-card reveal" onclick="filterMenu('snack',null)" style="--delay:0.45s">
+        <div class="cat-img-wrap">
+          <!-- Fixed: proper snacks/fries image -->
+          <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&q=80" alt="Snacks"
+            loading="lazy" />
+          <div class="cat-glow"></div>
+        </div>
+        <div class="cat-label">🍟 Snacks</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ MENU ══ -->
+  <section id="menu" class="menu-section">
+    <div class="section-header reveal">
+      <div class="section-kicker">Full Menu</div>
+      <h2 class="section-title">Order <em>Your Favourites</em></h2>
+      <p class="section-sub">Fresh ingredients, bold spices — every dish made to order just for you.</p>
+    </div>
+    <div class="menu-filters reveal" id="menuFilters">
+      <button class="filter-btn active" onclick="filterMenu('all',this)">All</button>
+      <button class="filter-btn" onclick="filterMenu('desi',this)">🍛 Desi</button>
+      <button class="filter-btn" onclick="filterMenu('pizza',this)">🍕 Pizza</button>
+      <button class="filter-btn" onclick="filterMenu('burger',this)">🍔 Burger</button>
+      <button class="filter-btn" onclick="filterMenu('bbq',this)">🍢 BBQ</button>
+      <button class="filter-btn" onclick="filterMenu('roll',this)">🌯 Rolls</button>
+      <button class="filter-btn" onclick="filterMenu('snack',this)">🍟 Snacks</button>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </section>
+
+  <!-- ══ FLAVOUR BANNER ══ -->
+  <section class="flavours-section" id="flavours">
+    <div class="section-header reveal">
+      <div class="section-kicker">Taste Profiles</div>
+      <h2 class="section-title">Choose Your <em>Flavour</em></h2>
+    </div>
+    <div class="flavour-scroll">
+      <div class="flavour-track">
+        <div class="flavour-card" style="--fc:#b91c1c">
+          <div class="fc-emoji">🌶️</div>
+          <h3>Extra Spicy</h3>
+          <p>For the brave souls</p>
+        </div>
+        <div class="flavour-card" style="--fc:#15803d">
+          <div class="fc-emoji">🌿</div>
+          <h3>Mild Herb</h3>
+          <p>Light & aromatic</p>
+        </div>
+        <div class="flavour-card" style="--fc:#1d4ed8">
+          <div class="fc-emoji">🧄</div>
+          <h3>Garlic Butter</h3>
+          <p>Rich & creamy bliss</p>
+        </div>
+        <div class="flavour-card" style="--fc:#b45309">
+          <div class="fc-emoji">🍯</div>
+          <h3>Honey BBQ</h3>
+          <p>Sweet & smoky</p>
+        </div>
+        <div class="flavour-card" style="--fc:#065f46">
+          <div class="fc-emoji">🫑</div>
+          <h3>Mint Chutney</h3>
+          <p>Classic desi fresh</p>
+        </div>
+        <div class="flavour-card" style="--fc:#7c3aed">
+          <div class="fc-emoji">🍋</div>
+          <h3>Chatpata</h3>
+          <p>Tangy & addictive</p>
+        </div>
+        <!-- duplicates for infinite scroll -->
+        <div class="flavour-card" style="--fc:#b91c1c">
+          <div class="fc-emoji">🌶️</div>
+          <h3>Extra Spicy</h3>
+          <p>For the brave souls</p>
+        </div>
+        <div class="flavour-card" style="--fc:#15803d">
+          <div class="fc-emoji">🌿</div>
+          <h3>Mild Herb</h3>
+          <p>Light & aromatic</p>
+        </div>
+        <div class="flavour-card" style="--fc:#1d4ed8">
+          <div class="fc-emoji">🧄</div>
+          <h3>Garlic Butter</h3>
+          <p>Rich & creamy bliss</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COFFEE SECTION ══ -->
+  <section class="coffee-section" id="coffee">
+    <div class="coffee-bg-art"></div>
+    <div class="section-header reveal">
+      <div class="section-kicker">☕ Coffee Bar</div>
+      <h2 class="section-title">Artisan <em>Coffee</em> & Hot Drinks</h2>
+      <p class="section-sub">Handcrafted using premium arabica beans — the perfect companion to your meal.</p>
+    </div>
+    <div class="coffee-grid reveal" id="coffeeGrid"></div>
+  </section>
+
+  <!-- ══ DRINKS & ICE CREAM ══ -->
+  <section id="drinks" class="drinks-section">
+    <div class="section-header reveal">
+      <div class="section-kicker">Beverages & Desserts</div>
+      <h2 class="section-title">Drinks & <em>Ice Cream</em></h2>
+      <p class="section-sub">Cool drinks, thick shakes & 30+ ice cream flavours to refresh and delight.</p>
+    </div>
+    <div class="drinks-grid reveal" id="drinksGrid"></div>
+  </section>
+
+  <!-- ══ SPECIAL OFFERS ══ -->
+  <section id="offers" class="offers-section">
+    <div class="offers-bg"></div>
+    <div class="section-header reveal">
+      <div class="section-kicker">Limited Time</div>
+      <h2 class="section-title">Special <em>Offers</em></h2>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card reveal" style="--delay:0s">
+        <div class="offer-img">
+          <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=600&q=80" alt="Biryani"
+            loading="lazy" />
+          <div class="offer-badge">50% OFF</div>
+        </div>
+        <div class="offer-body">
+          <div class="offer-tag">🔥 Flash Deal</div>
+          <h3>Family Biryani Platter</h3>
+          <p>Serves 4 — Chicken + Raita + Drinks. Weekend special only.</p>
+          <button class="btn btn-fire sm" onclick="showOrder()"><i class="fas fa-bolt"></i>Grab Deal</button>
+        </div>
+      </div>
+      <div class="offer-card reveal" style="--delay:0.1s">
+        <div class="offer-img">
+          <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="Pizza"
+            loading="lazy" />
+          <div class="offer-badge">Buy 2 Get 1</div>
+        </div>
+        <div class="offer-body">
+          <div class="offer-tag">🍕 Combo</div>
+          <h3>Get 1 Free Pizza</h3>
+          <p>Any size, any flavour. Valid Mon–Thu on orders above Rs.1200.</p>
+          <button class="btn btn-fire sm" onclick="showOrder()"><i class="fas fa-pizza-slice"></i>Order Now</button>
+        </div>
+      </div>
+      <div class="offer-card reveal" style="--delay:0.2s">
+        <div class="offer-img">
+          <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=600&q=80" alt="Ice Cream"
+            loading="lazy" />
+          <div class="offer-badge">Free Scoop</div>
+        </div>
+        <div class="offer-body">
+          <div class="offer-tag">🍦 Ice Cream</div>
+          <h3>With Every Meal</h3>
+          <p>Order any main dish above Rs.800 and get a free ice cream scoop.</p>
+          <button class="btn btn-fire sm" onclick="showOrder()"><i class="fas fa-ice-cream"></i>Claim Now</button>
+        </div>
+      </div>
+      <div class="offer-card reveal" style="--delay:0.3s">
+        <div class="offer-img">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" alt="Coffee"
+            loading="lazy" />
+          <div class="offer-badge">Rs.99</div>
+        </div>
+        <div class="offer-body">
+          <div class="offer-tag">☕ Coffee Deal</div>
+          <h3>Coffee + Snack Combo</h3>
+          <p>Any coffee + samosa chaat or pakora. Available all day.</p>
+          <button class="btn btn-fire sm" onclick="showOrder()"><i class="fas fa-coffee"></i>Get Combo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DELIVERY TYPES ══ -->
+  <section class="delivery-section" id="delivery">
+    <div class="section-header reveal">
+      <div class="section-kicker">How We Deliver</div>
+      <h2 class="section-title">Delivery <em>Options</em></h2>
+      <p class="section-sub">Choose what works best for you — we're flexible and always on time.</p>
+    </div>
+    <div class="delivery-cards">
+      <div class="delivery-card active reveal" onclick="selectDelivery(this,'delivery')" style="--delay:0s">
+        <div class="dc-icon">🛵</div>
+        <h3>Home Delivery</h3>
+        <p>Hot & fresh at your doorstep within 30–45 minutes. Live tracking available.</p>
+        <span class="dc-tag">Free above Rs.800</span>
+      </div>
+      <div class="delivery-card reveal" onclick="selectDelivery(this,'pickup')" style="--delay:0.1s">
+        <div class="dc-icon">🏪</div>
+        <h3>Takeaway / Pickup</h3>
+        <p>Order ahead, skip the queue, and pick up whenever you're ready.</p>
+        <span class="dc-tag">10% discount</span>
+      </div>
+      <div class="delivery-card reveal" onclick="selectDelivery(this,'dine')" style="--delay:0.2s">
+        <div class="dc-icon">🍽️</div>
+        <h3>Dine In</h3>
+        <p>Enjoy a cosy restaurant experience with full table service and ambiance.</p>
+        <span class="dc-tag">Reserve a table</span>
+      </div>
+      <div class="delivery-card reveal" onclick="selectDelivery(this,'online')" style="--delay:0.3s">
+        <div class="dc-icon">💻</div>
+        <h3>Online Pre-order</h3>
+        <p>Schedule your order up to 2 days in advance. Perfect for events.</p>
+        <span class="dc-tag">Schedule delivery</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CART PANEL ══ -->
+  <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+      <button class="cart-close" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+    </div>
+    <ul class="cart-items" id="cartItems">
+      <div class="cart-empty">
+        <div class="cart-empty-icon">🛒</div>
+        <p>Your cart is empty</p>
+        <small>Add delicious items to get started</small>
+      </div>
+    </ul>
+    <div class="cart-footer">
+      <div class="cart-total" id="cartTotal" style="display:none">
+        <div class="total-row"><span>Subtotal</span><span id="subtotal">Rs.0</span></div>
+        <div class="total-row"><span>Delivery Fee</span><span id="deliveryFee">Rs.100</span></div>
+        <div class="total-row grand"><span>Total</span><span id="grandTotal">Rs.0</span></div>
+      </div>
+      <button class="btn btn-fire full" onclick="showOrder()" id="checkoutBtn" disabled>
+        <i class="fas fa-check-circle"></i> Proceed to Checkout
       </button>
-      <button class="nav-btn cart-trigger" onclick="toggleCart()">
-        <i class="fas fa-shopping-bag"></i><span>Cart</span>
-        <div class="cart-count" id="cartCount">0</div>
+      <button class="btn-ghost-sm" onclick="clearCart()">
+        <i class="fas fa-trash"></i> Clear Cart
       </button>
     </div>
   </div>
-</nav>
 
-<!-- ══ DRAWER ══ -->
-<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
-<div class="drawer" id="drawer">
-  <div class="drawer-header">
-    <div class="drawer-brand">
-      <div class="logo-icon small">🌶️</div>
-      <span>Spice<b>Lane</b></span>
-    </div>
-    <button class="drawer-close" onclick="closeDrawer()"><i class="fas fa-times"></i></button>
+  <!-- ══ CUSTOMISE MODAL ══ -->
+  <div class="modal-overlay" id="customModal">
+    <div class="modal" id="customModalContent"></div>
   </div>
-  <ul class="drawer-menu">
-    <li><a href="#hero" onclick="closeDrawer()"><i class="fas fa-home"></i>Home</a></li>
-    <li><a href="#categories" onclick="closeDrawer()"><i class="fas fa-th-large"></i>Categories</a></li>
-    <li><a href="#menu" onclick="closeDrawer()"><i class="fas fa-utensils"></i>Full Menu<span class="d-badge hot">HOT</span></a></li>
-    <li><a href="#coffee" onclick="closeDrawer()"><i class="fas fa-coffee"></i>Coffee Bar<span class="d-badge new">NEW</span></a></li>
-    <li><a href="#drinks" onclick="closeDrawer()"><i class="fas fa-glass-whiskey"></i>Drinks & Desserts</a></li>
-    <li><a href="#offers" onclick="closeDrawer()"><i class="fas fa-tags"></i>Special Offers</a></li>
-    <li><a href="#delivery" onclick="closeDrawer()"><i class="fas fa-motorcycle"></i>Delivery</a></li>
-    <li><a href="#footer" onclick="closeDrawer()"><i class="fas fa-phone"></i>Contact Us</a></li>
-  </ul>
-  <div class="drawer-delivery">
-    <h4><i class="fas fa-truck"></i> Order Type</h4>
-    <label class="delivery-opt active" id="opt-delivery">
-      <input type="radio" name="otype" value="delivery" checked onchange="setOrderType(this)"/>
-      <span class="opt-icon">🛵</span><span>Home Delivery</span>
-    </label>
-    <label class="delivery-opt" id="opt-pickup">
-      <input type="radio" name="otype" value="pickup" onchange="setOrderType(this)"/>
-      <span class="opt-icon">🏪</span><span>Takeaway</span>
-    </label>
-    <label class="delivery-opt" id="opt-dine">
-      <input type="radio" name="otype" value="dine" onchange="setOrderType(this)"/>
-      <span class="opt-icon">🍽️</span><span>Dine In</span>
-    </label>
-    <label class="delivery-opt" id="opt-online">
-      <input type="radio" name="otype" value="online" onchange="setOrderType(this)"/>
-      <span class="opt-icon">💻</span><span>Pre-order</span>
-    </label>
-  </div>
-</div>
 
-<!-- ══ HERO SLIDER ══ -->
-<section class="hero" id="hero">
-  <div class="slides" id="slides">
-    <div class="slide">
-      <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=1600&q=80');"></div>
-      <div class="slide-content fade-up visible">
-        <div class="slide-tag">🌶️ Desi Classics</div>
-        <h1>Authentic <span>Biryani</span><br/>Like Ammi Made</h1>
-        <p>Hand-spiced, slow-cooked, and packed with flavour. Chicken, Beef, Mutton & Vegetable options available daily.</p>
-        <div class="slide-btns">
-          <a href="#menu" class="btn btn-red"><i class="fas fa-utensils"></i> Order Now</a>
-          <a href="#menu" class="btn btn-outline">See Full Menu</a>
-        </div>
+  <!-- ══ ORDER MODAL ══ -->
+  <div class="modal-overlay" id="orderModal">
+    <div class="modal wide" id="orderModalContent">
+      <div class="modal-header">
+        <h2><i class="fas fa-receipt"></i> Complete Your Order</h2>
+        <button class="modal-close-btn" onclick="closeOrder()"><i class="fas fa-times"></i></button>
       </div>
-    </div>
-    <div class="slide">
-      <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1600&q=80');"></div>
-      <div class="slide-content">
-        <div class="slide-tag">🍕 Fast Food</div>
-        <h1>Wood-Fire <span>Pizza</span><br/>& Gourmet Burgers</h1>
-        <p>Classic, BBQ, Spicy & Loaded — every pizza and burger crafted to perfection with premium ingredients.</p>
-        <div class="slide-btns">
-          <a href="#menu" class="btn btn-red"><i class="fas fa-utensils"></i> Order Now</a>
-          <a href="#delivery" class="btn btn-outline">Delivery Info</a>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1600&q=80');"></div>
-      <div class="slide-content">
-        <div class="slide-tag">☕ Coffee Bar</div>
-        <h1>Premium <span>Coffee</span><br/>& Hot Beverages</h1>
-        <p>From rich espresso to creamy lattes — our baristas craft every cup with passion and precision.</p>
-        <div class="slide-btns">
-          <a href="#coffee" class="btn btn-red"><i class="fas fa-coffee"></i> Coffee Menu</a>
-          <a href="#offers" class="btn btn-outline">Today's Deals</a>
-        </div>
-      </div>
-    </div>
-    <div class="slide">
-      <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1499744937866-d7e566a20a61?w=1600&q=80');"></div>
-      <div class="slide-content">
-        <div class="slide-tag">🍦 Desserts</div>
-        <h1>Cool Down with<br/><span>Ice Cream</span> & Shakes</h1>
-        <p>30+ flavours, sundaes, waffles & thick shakes to sweeten every moment of your day.</p>
-        <div class="slide-btns">
-          <a href="#drinks" class="btn btn-red"><i class="fas fa-ice-cream"></i> Explore Desserts</a>
-          <a href="#offers" class="btn btn-outline">Today's Deals</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="dots" id="dots">
-    <div class="dot active" onclick="goSlide(0)"></div>
-    <div class="dot" onclick="goSlide(1)"></div>
-    <div class="dot" onclick="goSlide(2)"></div>
-    <div class="dot" onclick="goSlide(3)"></div>
-  </div>
-  <div class="slide-arrows">
-    <button class="arrow-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-    <button class="arrow-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
-  </div>
-</section>
-
-<!-- ══ STATS ══ -->
-<div class="stats-section">
-  <div class="stats-inner">
-    <div class="stat-item reveal">
-      <div class="stat-num" data-target="12000">6000</div>
-      <div class="stat-plus">+</div>
-      <div class="stat-label">Happy Customers</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item reveal">
-      <div class="stat-num" data-target="50">50</div>
-      <div class="stat-plus">+</div>
-      <div class="stat-label">Menu Items</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item reveal">
-      <div class="stat-num" data-target="49">4.7</div>
-      <div class="stat-plus"></div>
-      <div class="stat-label">Average Rating ★</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item reveal">
-      <div class="stat-num" data-target="30">30</div>
-      <div class="stat-plus">min</div>
-      <div class="stat-label">Avg. Delivery</div>
-    </div>
-    <div class="stat-divider"></div>
-    <div class="stat-item reveal">
-      <div class="stat-num" data-target="7">7</div>
-      <div class="stat-plus"></div>
-      <div class="stat-label">Days a Week</div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ CATEGORIES ══ -->
-<section class="categories-section" id="categories">
-  <div class="section-header reveal">
-    <div class="section-kicker">What We Serve</div>
-    <h2 class="section-title">Explore Our <em>Categories</em></h2>
-  </div>
-  <div class="cat-grid">
-    <a href="#menu" class="cat-card reveal" onclick="filterMenu('desi',null)" style="--delay:0.05s">
-      <div class="cat-img-wrap">
-        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&q=80" alt="Desi Food" loading="lazy"/>
-        <div class="cat-glow"></div>
-      </div>
-      <div class="cat-label">🍛 Desi Food</div>
-    </a>
-    <a href="#menu" class="cat-card reveal" onclick="filterMenu('pizza',null)" style="--delay:0.10s">
-      <div class="cat-img-wrap">
-        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80" alt="Pizza" loading="lazy"/>
-        <div class="cat-glow"></div>
-      </div>
-      <div class="cat-label">🍕 Pizza</div>
-    </a>
-    <a href="#menu" class="cat-card reveal" onclick="filterMenu('burger',null)" style="--delay:0.15s">
-      <div class="cat-img-wrap">
-        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80" alt="Burgers" loading="lazy"/>
-        <div class="cat-glow"></div>
-      </div>
-      <div class="cat-label">🍔 Burgers</div>
-    </a>
-    <a href="#menu" class="cat-card reveal" onclick="filterMenu('roll',null)" style="--delay:0.20s">
-      <div class="cat-img-wrap">
-        <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&q=80" alt="Rolls" loading="lazy"/>
-        <div class="cat-glow"></div>
-      </div>
-      <div class="cat-label">🌯 Rolls & Wraps</div>
-    </a>
-    <a href="#menu" class="cat-card reveal" onclick="filterMenu('bbq',null)" style="--delay:0.25s">
-      <div class="cat-img-wrap">
-        <img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=400&q=80" alt="BBQ" loading="lazy"/>
-        <div class="cat-glow"></div>
-      </div>
-      <div class="cat-label">🍢 BBQ & Grill</div>
-    </a>
-    <a href="#coffee" class="cat-card reveal" style="--delay:0.30s">
-      <div class="cat-img-wrap">
-        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&q=80" alt="Coffee" loading="lazy"/>
-        <div class="cat-glow"></div>
-      </div>
-      <div class="cat-label">☕ Coffee</div>
-    </a>
-    <a href="#drinks" class="cat-card reveal" style="--delay:0.35s">
-      <div class="cat-img-wrap">
-        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400&q=80" alt="Drinks" loading="lazy"/>
-        <div class="cat-glow"></div>
-      </div>
-      <div class="cat-label">🥤 Drinks</div>
-    </a>
-    <a href="#drinks" class="cat-card reveal" style="--delay:0.40s">
-      <div class="cat-img-wrap">
-        <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=400&q=80" alt="Ice Cream" loading="lazy"/>
-        <div class="cat-glow"></div>
-      </div>
-      <div class="cat-label">🍦 Ice Cream</div>
-    </a>
-    <a href="#menu" class="cat-card reveal" onclick="filterMenu('snack',null)" style="--delay:0.45s">
-      <div class="cat-img-wrap">
-        <img src="https://images.unsplash.com/photo-1585325701165-c9aac31f4c78?w=400&q=80" alt="Snacks" loading="lazy"/>
-        <div class="cat-glow"></div>
-      </div>
-      <div class="cat-label">🍟 Snacks</div>
-    </a>
-  </div>
-</section>
-
-<!-- ══ MENU ══ -->
-<section id="menu" class="menu-section">
-  <div class="section-header reveal">
-    <div class="section-kicker">Full Menu</div>
-    <h2 class="section-title">Order <em>Your Favourites</em></h2>
-    <p class="section-sub">Fresh ingredients, bold spices — every dish made to order just for you.</p>
-  </div>
-  <div class="menu-filters reveal" id="menuFilters">
-    <button class="filter-btn active" onclick="filterMenu('all',this)">All</button>
-    <button class="filter-btn" onclick="filterMenu('desi',this)">🍛 Desi</button>
-    <button class="filter-btn" onclick="filterMenu('pizza',this)">🍕 Pizza</button>
-    <button class="filter-btn" onclick="filterMenu('burger',this)">🍔 Burger</button>
-    <button class="filter-btn" onclick="filterMenu('bbq',this)">🍢 BBQ</button>
-    <button class="filter-btn" onclick="filterMenu('roll',this)">🌯 Rolls</button>
-    <button class="filter-btn" onclick="filterMenu('snack',this)">🍟 Snacks</button>
-  </div>
-  <div class="menu-grid" id="menuGrid"></div>
-</section>
-
-<!-- ══ FLAVOUR BANNER ══ -->
-<section class="flavours-section" id="flavours">
-  <div class="section-header reveal">
-    <div class="section-kicker">Taste Profiles</div>
-    <h2 class="section-title">Choose Your <em>Flavour</em></h2>
-  </div>
-  <div class="flavour-scroll">
-    <div class="flavour-track">
-      <div class="flavour-card" style="--fc:#b91c1c">
-        <div class="fc-emoji">🌶️</div><h3>Extra Spicy</h3><p>For the brave souls</p>
-      </div>
-      <div class="flavour-card" style="--fc:#15803d">
-        <div class="fc-emoji">🌿</div><h3>Mild Herb</h3><p>Light & aromatic</p>
-      </div>
-      <div class="flavour-card" style="--fc:#1d4ed8">
-        <div class="fc-emoji">🧄</div><h3>Garlic Butter</h3><p>Rich & creamy bliss</p>
-      </div>
-      <div class="flavour-card" style="--fc:#b45309">
-        <div class="fc-emoji">🍯</div><h3>Honey BBQ</h3><p>Sweet & smoky</p>
-      </div>
-      <div class="flavour-card" style="--fc:#065f46">
-        <div class="fc-emoji">🫑</div><h3>Mint Chutney</h3><p>Classic desi fresh</p>
-      </div>
-      <div class="flavour-card" style="--fc:#7c3aed">
-        <div class="fc-emoji">🍋</div><h3>Chatpata</h3><p>Tangy & addictive</p>
-      </div>
-      <!-- duplicate for infinite scroll feel -->
-      <div class="flavour-card" style="--fc:#b91c1c">
-        <div class="fc-emoji">🌶️</div><h3>Extra Spicy</h3><p>For the brave souls</p>
-      </div>
-      <div class="flavour-card" style="--fc:#15803d">
-        <div class="fc-emoji">🌿</div><h3>Mild Herb</h3><p>Light & aromatic</p>
-      </div>
-      <div class="flavour-card" style="--fc:#1d4ed8">
-        <div class="fc-emoji">🧄</div><h3>Garlic Butter</h3><p>Rich & creamy bliss</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ COFFEE SECTION ══ -->
-<section class="coffee-section" id="coffee">
-  <div class="coffee-bg-art"></div>
-  <div class="section-header reveal">
-    <div class="section-kicker">☕ Coffee Bar</div>
-    <h2 class="section-title">Artisan <em>Coffee</em> & Hot Drinks</h2>
-    <p class="section-sub">Handcrafted using premium arabica beans — the perfect companion to your meal.</p>
-  </div>
-  <div class="coffee-grid reveal" id="coffeeGrid"></div>
-</section>
-
-<!-- ══ DRINKS & ICE CREAM ══ -->
-<section id="drinks" class="drinks-section">
-  <div class="section-header reveal">
-    <div class="section-kicker">Beverages & Desserts</div>
-    <h2 class="section-title">Drinks & <em>Ice Cream</em></h2>
-    <p class="section-sub">Cool drinks, thick shakes & 30+ ice cream flavours to refresh and delight.</p>
-  </div>
-  <div class="drinks-grid reveal" id="drinksGrid"></div>
-</section>
-
-<!-- ══ SPECIAL OFFERS ══ -->
-<section id="offers" class="offers-section">
-  <div class="offers-bg"></div>
-  <div class="section-header reveal">
-    <div class="section-kicker">Limited Time</div>
-    <h2 class="section-title">Special <em>Offers</em></h2>
-  </div>
-  <div class="offers-grid">
-    <div class="offer-card reveal" style="--delay:0s">
-      <div class="offer-img">
-        <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=600&q=80" alt="Biryani" loading="lazy"/>
-        <div class="offer-badge">50% OFF</div>
-      </div>
-      <div class="offer-body">
-        <div class="offer-tag">🔥 Flash Deal</div>
-        <h3>Family Biryani Platter</h3>
-        <p>Serves 4 — Chicken + Raita + Drinks. Weekend special only.</p>
-        <button class="btn btn-fire sm" onclick="showOrder()"><i class="fas fa-bolt"></i>Grab Deal</button>
-      </div>
-    </div>
-    <div class="offer-card reveal" style="--delay:0.1s">
-      <div class="offer-img">
-        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="Pizza" loading="lazy"/>
-        <div class="offer-badge">Buy 2 Get 1</div>
-      </div>
-      <div class="offer-body">
-        <div class="offer-tag">🍕 Combo</div>
-        <h3>Get 1 Free Pizza</h3>
-        <p>Any size, any flavour. Valid Mon–Thu on orders above Rs.1200.</p>
-        <button class="btn btn-fire sm" onclick="showOrder()"><i class="fas fa-pizza-slice"></i>Order Now</button>
-      </div>
-    </div>
-    <div class="offer-card reveal" style="--delay:0.2s">
-      <div class="offer-img">
-        <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=600&q=80" alt="Ice Cream" loading="lazy"/>
-        <div class="offer-badge">Free Scoop</div>
-      </div>
-      <div class="offer-body">
-        <div class="offer-tag">🍦 Ice Cream</div>
-        <h3>With Every Meal</h3>
-        <p>Order any main dish above Rs.800 and get a free ice cream scoop.</p>
-        <button class="btn btn-fire sm" onclick="showOrder()"><i class="fas fa-ice-cream"></i>Claim Now</button>
-      </div>
-    </div>
-    <div class="offer-card reveal" style="--delay:0.3s">
-      <div class="offer-img">
-        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" alt="Coffee" loading="lazy"/>
-        <div class="offer-badge">Rs.99</div>
-      </div>
-      <div class="offer-body">
-        <div class="offer-tag">☕ Coffee Deal</div>
-        <h3>Coffee + Snack Combo</h3>
-        <p>Any coffee + samosa chaat or pakora. Available all day.</p>
-        <button class="btn btn-fire sm" onclick="showOrder()"><i class="fas fa-coffee"></i>Get Combo</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ DELIVERY TYPES ══ -->
-<section class="delivery-section" id="delivery">
-  <div class="section-header reveal">
-    <div class="section-kicker">How We Deliver</div>
-    <h2 class="section-title">Delivery <em>Options</em></h2>
-    <p class="section-sub">Choose what works best for you — we're flexible and always on time.</p>
-  </div>
-  <div class="delivery-cards">
-    <div class="delivery-card active reveal" onclick="selectDelivery(this,'delivery')" style="--delay:0s">
-      <div class="dc-icon">🛵</div>
-      <h3>Home Delivery</h3>
-      <p>Hot & fresh at your doorstep within 30–45 minutes. Live tracking available.</p>
-      <span class="dc-tag">Free above Rs.800</span>
-    </div>
-    <div class="delivery-card reveal" onclick="selectDelivery(this,'pickup')" style="--delay:0.1s">
-      <div class="dc-icon">🏪</div>
-      <h3>Takeaway / Pickup</h3>
-      <p>Order ahead, skip the queue, and pick up whenever you're ready.</p>
-      <span class="dc-tag">10% discount</span>
-    </div>
-    <div class="delivery-card reveal" onclick="selectDelivery(this,'dine')" style="--delay:0.2s">
-      <div class="dc-icon">🍽️</div>
-      <h3>Dine In</h3>
-      <p>Enjoy a cosy restaurant experience with full table service and ambiance.</p>
-      <span class="dc-tag">Reserve a table</span>
-    </div>
-    <div class="delivery-card reveal" onclick="selectDelivery(this,'online')" style="--delay:0.3s">
-      <div class="dc-icon">💻</div>
-      <h3>Online Pre-order</h3>
-      <p>Schedule your order up to 2 days in advance. Perfect for events.</p>
-      <span class="dc-tag">Schedule delivery</span>
-    </div>
-  </div>
-</section>
-
-<!-- ══ CART PANEL ══ -->
-<div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
-<div class="cart-panel" id="cartPanel">
-  <div class="cart-header">
-    <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
-    <button class="cart-close" onclick="toggleCart()"><i class="fas fa-times"></i></button>
-  </div>
-  <ul class="cart-items" id="cartItems">
-    <div class="cart-empty">
-      <div class="cart-empty-icon">🛒</div>
-      <p>Your cart is empty</p>
-      <small>Add delicious items to get started</small>
-    </div>
-  </ul>
-  <div class="cart-footer">
-    <div class="cart-total" id="cartTotal" style="display:none">
-      <div class="total-row"><span>Subtotal</span><span id="subtotal">Rs.0</span></div>
-      <div class="total-row"><span>Delivery Fee</span><span id="deliveryFee">Rs.100</span></div>
-      <div class="total-row grand"><span>Total</span><span id="grandTotal">Rs.0</span></div>
-    </div>
-    <button class="btn btn-fire full" onclick="showOrder()" id="checkoutBtn" disabled>
-      <i class="fas fa-check-circle"></i> Proceed to Checkout
-    </button>
-    <button class="btn-ghost-sm" onclick="clearCart()">
-      <i class="fas fa-trash"></i> Clear Cart
-    </button>
-  </div>
-</div>
-
-<!-- ══ CUSTOMISE MODAL ══ -->
-<div class="modal-overlay" id="customModal">
-  <div class="modal" id="customModalContent">
-    <!-- Filled by JS -->
-  </div>
-</div>
-
-<!-- ══ ORDER MODAL ══ -->
-<div class="modal-overlay" id="orderModal">
-  <div class="modal wide" id="orderModalContent">
-    <div class="modal-header">
-      <h2><i class="fas fa-receipt"></i> Complete Your Order</h2>
-      <button class="modal-close-btn" onclick="closeOrder()"><i class="fas fa-times"></i></button>
-    </div>
-    <p class="modal-sub">Fill in your details and we'll confirm your order instantly.</p>
-    <div class="order-summary-box" id="modalOrderSummary"></div>
-    <div class="form-row">
-      <div class="form-group">
-        <label><i class="fas fa-user"></i> Full Name *</label>
-        <input type="text" id="oName" placeholder="Ahmed Khan"/>
-      </div>
-      <div class="form-group">
-        <label><i class="fas fa-phone"></i> Phone *</label>
-        <input type="tel" id="oPhone" placeholder="+92 3XX XXXXXXX"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <label><i class="fas fa-envelope"></i> Email Address *</label>
-      <input type="email" id="oEmail" placeholder="you@example.com"/>
-    </div>
-    <div class="form-group">
-      <label><i class="fas fa-map-marker-alt"></i> Delivery Address</label>
-      <input type="text" id="oAddress" placeholder="Street, City (required for home delivery)"/>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label><i class="fas fa-truck"></i> Delivery Type</label>
-        <select id="oType">
-          <option value="delivery">🛵 Home Delivery</option>
-          <option value="pickup">🏪 Takeaway</option>
-          <option value="dine">🍽️ Dine In</option>
-          <option value="online">💻 Pre-order</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label><i class="fas fa-credit-card"></i> Payment Method</label>
-        <select id="oPayment" onchange="handlePaymentChange(this.value)">
-          <option value="cod">Cash on Delivery</option>
-          <option value="jazzcash">JazzCash</option>
-          <option value="easypaisa">EasyPaisa</option>
-          <option value="card">Credit / Debit Card</option>
-          <option value="bank">Bank Transfer</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Bank details section (shown only for bank/card) -->
-    <div id="bankDetails" style="display:none">
-      <div class="bank-section-title"><i class="fas fa-university"></i> Bank Details</div>
+      <p class="modal-sub">Fill in your details and we'll confirm your order instantly.</p>
+      <div class="order-summary-box" id="modalOrderSummary"></div>
       <div class="form-row">
         <div class="form-group">
-          <label>Select Bank</label>
-          <select id="oBankName">
-            <option value="">-- Select Your Bank --</option>
-            <option>HBL – Habib Bank Limited</option>
-            <option>MCB – Muslim Commercial Bank</option>
-            <option>UBL – United Bank Limited</option>
-            <option>Meezan Bank</option>
-            <option>Allied Bank</option>
-            <option>Bank Alfalah</option>
-            <option>Standard Chartered</option>
-            <option>Faysal Bank</option>
-            <option>JS Bank</option>
-            <option>Askari Bank</option>
-            <option>Soneri Bank</option>
-            <option>NBP – National Bank of Pakistan</option>
-            <option>Summit Bank</option>
-            <option>Silk Bank</option>
-            <option>Other</option>
+          <label><i class="fas fa-user"></i> Full Name *</label>
+          <input type="text" id="oName" placeholder="Ahmed Khan" />
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-phone"></i> Phone *</label>
+          <input type="tel" id="oPhone" placeholder="+92 3XX XXXXXXX" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-envelope"></i> Email Address *</label>
+        <input type="email" id="oEmail" placeholder="you@example.com" />
+      </div>
+      <div class="form-group">
+        <label><i class="fas fa-map-marker-alt"></i> Delivery Address</label>
+        <input type="text" id="oAddress" placeholder="Street, City (required for home delivery)" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fas fa-truck"></i> Delivery Type</label>
+          <select id="oType">
+            <option value="delivery">🛵 Home Delivery</option>
+            <option value="pickup">🏪 Takeaway</option>
+            <option value="dine">🍽️ Dine In</option>
+            <option value="online">💻 Pre-order</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Account / Card Number</label>
-          <input type="text" id="oAccountNum" placeholder="XXXX XXXX XXXX XXXX" oninput="formatAccountNum(this)"/>
+          <label><i class="fas fa-credit-card"></i> Payment Method</label>
+          <select id="oPayment" onchange="handlePaymentChange(this.value)">
+            <option value="cod">Cash on Delivery</option>
+            <option value="jazzcash">JazzCash</option>
+            <option value="easypaisa">EasyPaisa</option>
+            <option value="card">Credit / Debit Card</option>
+            <option value="bank">Bank Transfer</option>
+          </select>
+        </div>
+      </div>
+      <div id="bankDetails" style="display:none">
+        <div class="bank-section-title"><i class="fas fa-university"></i> Bank Details</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Select Bank</label>
+            <select id="oBankName">
+              <option value="">-- Select Your Bank --</option>
+              <option>HBL – Habib Bank Limited</option>
+              <option>MCB – Muslim Commercial Bank</option>
+              <option>UBL – United Bank Limited</option>
+              <option>Meezan Bank</option>
+              <option>Allied Bank</option>
+              <option>Bank Alfalah</option>
+              <option>Standard Chartered</option>
+              <option>Faysal Bank</option>
+              <option>JS Bank</option>
+              <option>Askari Bank</option>
+              <option>Soneri Bank</option>
+              <option>NBP – National Bank of Pakistan</option>
+              <option>Summit Bank</option>
+              <option>Silk Bank</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Account / Card Number</label>
+            <input type="text" id="oAccountNum" placeholder="XXXX XXXX XXXX XXXX" oninput="formatAccountNum(this)" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Account Holder Name</label>
+          <input type="text" id="oAccountName" placeholder="Name as on account" />
         </div>
       </div>
       <div class="form-group">
-        <label>Account Holder Name</label>
-        <input type="text" id="oAccountName" placeholder="Name as on account"/>
+        <label><i class="fas fa-sticky-note"></i> Special Instructions</label>
+        <textarea id="oNotes" rows="2" placeholder="Extra spicy, no onions, gluten free…"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-ghost-sm" onclick="closeOrder()">Cancel</button>
+        <button class="btn btn-fire" id="confirmBtn" onclick="confirmOrder()">
+          <i class="fas fa-check-circle"></i> Confirm Order
+        </button>
       </div>
     </div>
-
-    <div class="form-group">
-      <label><i class="fas fa-sticky-note"></i> Special Instructions</label>
-      <textarea id="oNotes" rows="2" placeholder="Extra spicy, no onions, gluten free…"></textarea>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-ghost-sm" onclick="closeOrder()">Cancel</button>
-      <button class="btn btn-fire" id="confirmBtn" onclick="confirmOrder()">
-        <i class="fas fa-check-circle"></i> Confirm Order
-      </button>
-    </div>
   </div>
-</div>
 
-<!-- ══ FOOTER ══ -->
-<footer id="footer">
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="footer-logo">
-        <div class="logo-icon">🌶️</div>
-        <span>Spice<b>Lane</b></span>
+  <!-- ══ FOOTER ══ -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-icon">🌶️</div>
+          <span>Spice<b>Lane</b></span>
+        </div>
+        <p>Your favourite destination for authentic desi meals, gourmet fast food, artisan coffee, refreshing drinks &
+          desserts. Open 7 days a week.</p>
+        <div class="socials">
+          <a href="https://instagram.com/spicelane" target="_blank" class="social-btn" title="Instagram"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://facebook.com" class="social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://wa.me/923285580982" class="social-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://tiktok.com" class="social-btn" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
       </div>
-      <p>Your favourite destination for authentic desi meals, gourmet fast food, artisan coffee, refreshing drinks & desserts. Open 7 days a week.</p>
-      <div class="socials">
-        <a href="https://instagram.com/spicelane" target="_blank" class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://facebook.com" class="social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://wa.me/923285580982" class="social-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://tiktok.com" class="social-btn" title="TikTok"><i class="fab fa-tiktok"></i></a>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#coffee">Coffee Bar</a></li>
+          <li><a href="#offers">Offers</a></li>
+          <li><a href="#delivery">Delivery</a></li>
+          <li><a href="#drinks">Desserts</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Menu</h4>
+        <ul>
+          <li><a href="#menu">Biryani & Rice</a></li>
+          <li><a href="#menu">BBQ & Grill</a></li>
+          <li><a href="#menu">Pizza & Pasta</a></li>
+          <li><a href="#menu">Burgers & Rolls</a></li>
+          <li><a href="#coffee">Coffee & Hot Drinks</a></li>
+          <li><a href="#drinks">Drinks & Ice Cream</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="contact-item"><i class="fas fa-envelope"></i><a
+            href="mailto:spicelane@gmail.com">spicelane@gmail.com</a></div>
+        <div class="contact-item"><i class="fas fa-phone"></i><a href="tel:+923285580982">+92 328 5580982</a></div>
+        <div class="contact-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/923285580982">WhatsApp Order</a>
+        </div>
+        <div class="contact-item"><i class="fab fa-instagram"></i><a href="https://instagram.com/spicelane"
+            target="_blank">@spicelane</a></div>
+        <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Main Bazaar, Kharian, Punjab,
+            Pakistan</span></div>
+        <div class="contact-item"><i class="fas fa-clock"></i><span>Open Daily: 11:00 AM – 1:00 AM</span></div>
       </div>
     </div>
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#coffee">Coffee Bar</a></li>
-        <li><a href="#offers">Offers</a></li>
-        <li><a href="#delivery">Delivery</a></li>
-        <li><a href="#drinks">Desserts</a></li>
-      </ul>
+    <div class="footer-bottom">
+      <p>© 2026 SpiceLane. All rights reserved. Made with ❤️ in Pakistan.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <span>·</span>
+        <a href="#">Terms of Service</a>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Our Menu</h4>
-      <ul>
-        <li><a href="#menu">Biryani & Rice</a></li>
-        <li><a href="#menu">BBQ & Grill</a></li>
-        <li><a href="#menu">Pizza & Pasta</a></li>
-        <li><a href="#menu">Burgers & Rolls</a></li>
-        <li><a href="#coffee">Coffee & Hot Drinks</a></li>
-        <li><a href="#drinks">Drinks & Ice Cream</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact Us</h4>
-      <div class="contact-item"><i class="fas fa-envelope"></i><a href="mailto:spicelane@gmail.com">spicelane@gmail.com</a></div>
-      <div class="contact-item"><i class="fas fa-phone"></i><a href="tel:+923285580982">+92 328 5580982</a></div>
-      <div class="contact-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/923285580982">WhatsApp Order</a></div>
-      <div class="contact-item"><i class="fab fa-instagram"></i><a href="https://instagram.com/spicelane" target="_blank">@spicelane</a></div>
-      <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>Main Bazaar, Kharian, Punjab, Pakistan</span></div>
-      <div class="contact-item"><i class="fas fa-clock"></i><span>Open Daily: 11:00 AM – 1:00 AM</span></div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2026 SpiceLane. All rights reserved. Made with ❤️ in Pakistan.</p>
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a>
-      <span>·</span>
-      <a href="#">Terms of Service</a>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script src="foodshop.js"></script>
+  <script src="foodshop.js"></script>
 </body>
+
 </html>
