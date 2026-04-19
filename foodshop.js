@@ -106,7 +106,7 @@ const coffeeItems = [
   // Fixed: Masala Chai — proper chai/tea image (NOT ice cream)
   { id: 107, name: 'Masala Chai', emoji: '🫖', img: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&q=80', desc: 'Spiced desi tea with cardamom, ginger, cinnamon & cloves.', price: 80, sizes: ['Cup', 'Kettle'] },
   // Fixed: Kashmiri Pink Tea — proper pink tea image (NOT ice cream)
-  { id: 108, name: 'Kashmiri Pink Tea', emoji: '🌸', img: 'https://images.unsplash.com/photo-1596803244897-c25073c6a936?w=500&q=80', desc: 'Traditional noon chai — creamy, salty & utterly comforting.', price: 100, sizes: ['Cup', 'Large'] },
+  { id: 108, name: 'Kashmiri Pink Tea', emoji: '🌸', img: 'https://t3.ftcdn.net/jpg/17/87/65/08/360_F_1787650894_HQsx0Qj8bgyyBRzHurdHsSpWX8vKOkdy.jpg', desc: 'Traditional noon chai — creamy, salty & utterly comforting.', price: 100, sizes: ['Cup', 'Large'] },
 ];
 
 const drinksItems = [
