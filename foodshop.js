@@ -100,7 +100,7 @@ const coffeeItems = [
   { id: 102, name: 'Cappuccino', emoji: '🍵', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=500&q=80', desc: 'Perfectly balanced espresso with silky steamed milk foam.', price: 180, sizes: ['Small', 'Medium', 'Large'] },
   // Fixed: proper caramel latte image (not ice cream)
   { id: 103, name: 'Caramel Latte', emoji: '🥛', img: 'https://cocostastyworld.com/main/BILDER/content/iced-caramel-latte/500/iced-caramel-latte2.jpg', desc: 'Smooth latte swirled with rich house-made caramel sauce.', price: 220, sizes: ['Medium', 'Large'] },
-  { id: 104, name: 'Cold Coffee', emoji: '🧋', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&q=80', desc: 'Chilled brewed coffee blended with cream & ice. Ultra refreshing.', price: 200, sizes: ['Regular', 'Large'] },
+  { id: 104, name: 'Cold Coffee', emoji: '🧋', img: 'https://t3.ftcdn.net/jpg/17/87/65/08/360_F_1787650894_HQsx0Qj8bgyyBRzHurdHsSpWX8vKOkdy.jpg', desc: 'Chilled brewed coffee blended with cream & ice. Ultra refreshing.', price: 200, sizes: ['Regular', 'Large'] },
   { id: 105, name: 'Hazelnut Mocha', emoji: '🍫', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&q=80', desc: 'Dark chocolate, hazelnut & espresso — pure indulgence in a cup.', price: 250, sizes: ['Medium', 'Large'] },
   { id: 106, name: 'Dalgona Coffee', emoji: '☕', img: 'https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=500&q=80', desc: 'Whipped coffee cloud on creamy cold milk. The TikTok legend.', price: 230, sizes: ['Regular'], badge: 'new' },
   // Fixed: Masala Chai — proper chai/tea image (NOT ice cream)
